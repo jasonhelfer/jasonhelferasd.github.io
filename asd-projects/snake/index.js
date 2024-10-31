@@ -65,7 +65,6 @@ updateInterval = setInterval(update, 100);
  */
 function update() {
   // TODO 5b: Fill in the update function's code block
-  function update() {
     moveSnake();
   
     if (hasHitWall() || hasCollidedWithSnake()) {
@@ -76,7 +75,7 @@ function update() {
       handleAppleCollision();
     }
   }
-}
+
 
 function checkForNewDirection(event) {
   /* 
@@ -85,13 +84,12 @@ function checkForNewDirection(event) {
   perpendicular to the current direction
   */
 
-  if (activeKey === KEY.LEFT) {
+  if (activeKey === key.LEFT) {
     snake.head.direction = "left";
   }
-
   // FILL IN THE REST
 
-  // console.log(snake.head.direction);     // uncomment me!
+   console.log(snake.head.direction);     // uncomment me!
 }
 
 function moveSnake() {
