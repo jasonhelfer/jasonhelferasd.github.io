@@ -36,7 +36,7 @@ $(document).ready(function () {
   /////////////////////////////////////////////////
   // ALL OF YOUR CODE SHOULD GO BELOW HERE ////////
   /////////////////////////////////////////////////
-
+// TODO 0 COMPLETE
   // TODO 1: create a new shape object and add it to the array
   var shape = {
     color: "blue",
@@ -63,7 +63,7 @@ $(document).ready(function () {
   // TODO 3-a: add a function that handles the static display type
   function handleStatic(data) {
     setBackgroundWithObject(data);
-    animationDetails.displayType == 1;
+    animationDetails.displayType = 1;
   }
 
   // TODO 4-a: add a function that handles the good display type
@@ -90,17 +90,9 @@ $(document).ready(function () {
   }
 
   function goodDisplay() {
-  }
-
-  function goodDisplay() {
     // TODO 4-b: call your handleGood function
     var currentShape = (dataShapes[currentIndex]);
-    handleGood( currentShape.repeat, currentShape.shape, currentShape.color);
-  }
-
-  
-
-  function badDisplay() {
+    handleGood( currentShape.color, currentShape.shape, currentShape.repeat);
   }
 
   function badDisplay() {
