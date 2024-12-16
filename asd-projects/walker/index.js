@@ -14,7 +14,7 @@ function runProgram(){
   const BOARD_HEIGHT = $("#board").height();
   const WALKER_WIDTH = $("#walker").width();
   const WALKER_HEIGHT = $("#walker").height();
-  var KEY = {
+  const KEY = {
     LEFT: 37,
     RIGHT: 39,
     UP: 38,
@@ -32,6 +32,12 @@ function runProgram(){
     speedX:0,
     speedY:0
 
+  }
+  var walker2 = {
+    xPos:BOARD_WIDTH - WALKER_WIDTH,
+    yPos:BOARD_HEIGHT - WALKER_HEIGHT,
+    speedX:0,
+    speedY:0
   }
 
   // one-time setup
@@ -59,29 +65,54 @@ function runProgram(){
     if (event.which === KEY.LEFT) {
       walker.speedX = -5;
       
-    }
-    if (event.which === KEY.UP) {
-      walker.speedY = -5;
-      
-    }
-    if (event.which === KEY.RIGHT) {
-      walker.speedY = 5;
-      
-    }
-    if (event.which === KEY.DOWN) {
+      }
+      if (event.which === KEY.RIGHT) {
       walker.speedX = 5;
       
-    }
-  }
-  function handleKeyUp(event) {
-    if (event.which === KEY.LEFT) {
-      walker.speedX = 0;  
-    } 
+      }
       if (event.which === KEY.UP) {
-      walker.speedY = 0; 
+      walker.speedY = -5;
+      
+      }
+      if (event.which === KEY.DOWN) {
+      walker.speedY = 5;
+      
+      }
+      if (event.which === KEY.A) {
+      walker2.speedX = -5;
+      
+      }
+      if (event.which === KEY.D) {
+      walker2.speedX = 5;
+      
+      }
+      if (event.which === KEY.W) {
+      walker2.speedY = -5;
+      
+      }
+      if (event.which === KEY.S) {
+      walker2.speedY = 5;
+      
+      }
+      if (event.which === KEY.C){
+        changeColor();
       }
     }
-  }
+  function handleKeyUp(event) {
+    if (event.which === KEY.LEFT || event.which === KEY.RIGHT) {
+      walker.speedX = 0;  
+    } 
+      if (event.which === KEY.UP || event.which === KEY.DOWN) {
+      walker.speedY = 0; 
+      }
+      if (event.which === KEY.A || event.which === KEY.D) {
+      walker2.speedX = 0;  
+    } 
+      if (event.which === KEY.W || event.which === KEY.S) {
+      walker2.speedY = 0; 
+      }
+    }
+  
 
 
   ////////////////////////////////////////////////////////////////////////////////
@@ -90,11 +121,15 @@ function runProgram(){
   function repositionGameItem() {
     walker.xPos += walker.speedX;
     walker.yPos += walker.speedY;
+    walker2.xPos += walker2.speedX;
+    walker2.yPos += walker2.speedY;
   };
 
   function redrawGameItem() {
     $("#walker").css("left", walker.xPos);
     $("#walker").css("top", walker.yPos);
+    $("#walker2").css("left", walker2.xPos);
+    $("#walker2").css("top", walker2.yPos);
   };
   function wallCollision() {
     if(walker.xPos > BOARD_WIDTH - WALKER_WIDTH){
@@ -109,9 +144,20 @@ function runProgram(){
     if(walker.yPos > BOARD_HEIGHT - WALKER_HEIGHT){
       walker.yPos -= walker.speedY
     }
+    if(walker2.xPos > BOARD_WIDTH - WALKER_WIDTH){
+      walker2.xPos -= walker2.speedX
+    }
+    if(walker2.xPos < 0){
+      walker2.xPos -= walker2.speedX
+    }
+    if(walker2.yPos < 0){
+      walker2.yPos -= walker2.speedY
+    }
+    if(walker2.yPos > BOARD_HEIGHT - WALKER_HEIGHT){
+      walker2.yPos -= walker2.speedY
+    }
   }
   
-
 
   
   function endGame() {
@@ -122,4 +168,4 @@ function runProgram(){
     $(document).off();
   }
   
-
+}
